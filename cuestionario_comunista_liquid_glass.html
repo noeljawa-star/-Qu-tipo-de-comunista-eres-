@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#111522">
+<title>¿Qué tipo de comunista eres?</title>
+<style>
+:root{--bg:#0b1020;--panel:rgba(255,255,255,.085);--line:rgba(255,255,255,.17);--txt:#f4f6ff;--muted:#aeb7ce;--red:#ff5b70;--cyan:#80d9ff;--purple:#b99cff}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;color:var(--txt);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;background:radial-gradient(ellipse at 15% 10%,#3c315f 0,transparent 34%),radial-gradient(ellipse at 90% 25%,#163e57 0,transparent 32%),linear-gradient(135deg,#090d19,#141a2d 55%,#101323);background-attachment:fixed}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.22;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:38px 38px}
+.wrap{width:min(920px,calc(100% - 32px));margin:0 auto;padding:42px 0 70px}.glass{background:var(--panel);border:1px solid var(--line);box-shadow:0 22px 70px rgba(0,0,0,.32),inset 0 1px rgba(255,255,255,.12);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-radius:26px}
+header{text-align:center;padding:28px 18px 34px} .eyebrow{letter-spacing:.2em;text-transform:uppercase;font-size:.72rem;color:#c4cce0;font-weight:700}
+h1{font-size:clamp(2.1rem,6vw,4.2rem);line-height:1.02;letter-spacing:-.055em;margin:16px 0 14px}h1 span{background:linear-gradient(90deg,#ff8290,#c3a8ff,#85e0ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.subtitle{max-width:650px;margin:auto;color:var(--muted);line-height:1.65;font-size:1.02rem}.notice{display:inline-block;margin-top:18px;padding:8px 13px;border-radius:99px;background:rgba(255,255,255,.07);border:1px solid var(--line);font-size:.78rem;color:#d5dcef}
+.panel{padding:clamp(20px,4vw,36px)}.topline{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:14px;color:var(--muted);font-size:.88rem}.progress{height:7px;background:rgba(255,255,255,.1);border-radius:20px;overflow:hidden;margin-bottom:30px}.bar{height:100%;width:0;background:linear-gradient(90deg,var(--red),var(--purple),var(--cyan));border-radius:20px;transition:width .3s}
+.qnum{color:#ff9aa6;font-size:.78rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase}.question{font-size:clamp(1.35rem,3vw,2rem);line-height:1.25;letter-spacing:-.025em;margin:12px 0 24px}
+.answers{display:grid;gap:11px}.answer{width:100%;text-align:left;color:var(--txt);font:inherit;font-size:.98rem;line-height:1.45;padding:16px 18px;border-radius:16px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.13);cursor:pointer;transition:.2s;display:flex;gap:13px;align-items:flex-start}.answer:hover{transform:translateY(-2px);background:rgba(255,255,255,.11);border-color:rgba(159,205,255,.5)}.answer.selected{background:linear-gradient(100deg,rgba(255,91,112,.18),rgba(185,156,255,.15));border-color:#d1b5ff;box-shadow:0 0 0 2px rgba(185,156,255,.12)}.letter{flex:none;width:27px;height:27px;display:grid;place-items:center;border-radius:9px;background:rgba(255,255,255,.1);font-size:.8rem;font-weight:800;color:#dfe5f5}
+.actions{display:flex;justify-content:space-between;gap:12px;margin-top:27px}.btn{border:0;border-radius:13px;padding:12px 20px;font-weight:750;font-size:.92rem;cursor:pointer;color:#111522;background:#e8eaff;transition:.2s}.btn:hover{transform:translateY(-1px);filter:brightness(1.05)}.btn:disabled{opacity:.35;cursor:not-allowed;transform:none}.btn.secondary{color:#e7eaff;background:rgba(255,255,255,.08);border:1px solid var(--line)}
+.center{text-align:center}.hidden{display:none!important}.result-icon{width:76px;height:76px;margin:0 auto 18px;border-radius:24px;display:grid;place-items:center;font-size:2rem;background:linear-gradient(135deg,rgba(255,110,130,.3),rgba(135,207,255,.25));border:1px solid var(--line)}.result h2{font-size:clamp(1.9rem,5vw,3rem);margin:8px 0}.thinker{font-size:1.15rem;color:#c7b4ff;margin:8px 0 20px}.description{max-width:700px;margin:0 auto;color:#d4daea;line-height:1.7}.traits{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin:24px 0}.trait{padding:8px 12px;border-radius:99px;background:rgba(255,255,255,.075);border:1px solid var(--line);font-size:.82rem;color:#e1e7f7}.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin:25px 0;text-align:left}.mini{padding:18px;border-radius:17px;background:rgba(255,255,255,.055);border:1px solid var(--line)}.mini h3{font-size:.82rem;text-transform:uppercase;letter-spacing:.12em;color:#aeb7ce;margin:0 0 9px}.mini p{margin:0;color:#e0e5f2;line-height:1.55;font-size:.92rem}.disclaimer{font-size:.8rem;color:#9faac3;line-height:1.55;margin:24px auto 0;max-width:690px}.footer{text-align:center;color:#8f9ab4;font-size:.77rem;margin-top:20px}
+@media(max-width:600px){.wrap{padding-top:20px}.result-grid{grid-template-columns:1fr}.panel{border-radius:21px}.answer{padding:14px}.actions .btn{padding:12px 15px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<div class="eyebrow">Cuestionario ideológico · 20 preguntas</div>
+<h1>¿Qué tipo de <span>comunista</span> eres?</h1>
+<p class="subtitle">Explora 20 corrientes del pensamiento comunista y descubre con cuáles conectan más tus respuestas, entre 30 pensadores históricos y contemporáneos.</p>
+<div class="notice">20 corrientes · 30 pensadores · 20 preguntas</div>
+</header>
+<main>
+<section class="glass panel" id="quiz">
+<div class="topline"><span id="counter">Pregunta 1 de 20</span><span id="percent">5 %</span></div>
+<div class="progress"><div class="bar" id="bar"></div></div>
+<div class="qnum" id="qnum">PREGUNTA 01</div>
+<h2 class="question" id="question"></h2>
+<div class="answers" id="answers"></div>
+<div class="actions"><button class="btn secondary" id="back" disabled>← Anterior</button><button class="btn" id="next" disabled>Siguiente →</button></div>
+</section>
+<section class="glass panel result hidden" id="result">
+<div class="center">
+<div class="result-icon">✦</div>
+<div class="eyebrow">Tu perfil de afinidad</div>
+<h2 id="type"></h2>
+<div class="thinker" id="thinker"></div>
+<p class="description" id="description"></p>
+<div class="traits" id="traits"></div>
+</div>
+<div class="result-grid">
+<div class="mini"><h3>Ideas que te definen</h3><p id="ideas"></p></div>
+<div class="mini"><h3>Un posible punto de debate</h3><p id="debate"></p></div>
+<div class="mini"><h3>Lectura para empezar</h3><p id="reading"></p></div>
+<div class="mini"><h3>Recuerda</h3><p>La afinidad con un pensador no significa compartir todas sus posiciones. Las corrientes son diversas y han cambiado según la época y el contexto.</p></div>
+</div>
+<div class="center"><button class="btn" id="restart">↻ Repetir cuestionario</button></div>
+<p class="disclaimer">El resultado se calcula a partir de tus respuestas a este cuestionario orientativo. No mide tu identidad política ni sustituye la lectura de las obras originales. Las categorías simplifican debates históricos complejos.</p>
+</section>
+</main>
+<div class="footer">DISEÑADO PARA APRENDER, COMPARAR Y DEBATIR · 20 RESPUESTAS</div>
+</div>
+<script>
+const profiles={
+ marx:{name:"Marxismo clásico",base:"marx",thinkers:["Karl Marx","Friedrich Engels","Georgi Plejánov"],desc:"Analizas la sociedad desde las relaciones de producción, las clases sociales y el cambio histórico. Te interesa comprender el funcionamiento del capitalismo y transformar sus estructuras económicas.",traits:["Análisis de clase","Crítica de la economía política","Materialismo histórico"],ideas:"La propiedad de los medios de producción, el conflicto de clases y las condiciones materiales son centrales.",debate:"¿Cómo actualizar el análisis marxista ante el trabajo digital, la crisis ecológica y las nuevas formas de empleo?",reading:"Karl Marx — El capital (1867)."},
+ lenin:{name:"Marxismo-leninismo",base:"lenin",thinkers:["Vladímir I. Lenin","Nadezhda Krúpskaya","Nikolái Bujarin"],desc:"Te atraen la organización política, la estrategia colectiva y el análisis del Estado. Das importancia a la coordinación y a la capacidad de convertir objetivos sociales en acción política.",traits:["Organización","Estrategia","Análisis del Estado"],ideas:"La organización política y la estrategia aparecen como herramientas fundamentales para impulsar cambios.",debate:"¿Cómo combinar eficacia organizativa, pluralismo interno y control democrático desde la base?",reading:"V. I. Lenin — El Estado y la revolución (1917)."},
+ trotsky:{name:"Trotskismo",base:"trotsky",thinkers:["León Trotski","Ernest Mandel","Nahuel Moreno"],desc:"Te interesa el internacionalismo y eres crítico con la burocratización. Consideras que los procesos sociales están conectados globalmente y que la democracia interna es fundamental.",traits:["Internacionalismo","Revolución permanente","Crítica burocrática"],ideas:"La dimensión internacional de la lucha social y el control democrático de las organizaciones son temas centrales.",debate:"¿Cómo coordinar movimientos internacionales sin reproducir jerarquías burocráticas?",reading:"León Trotski — La revolución permanente (1930)."},
+ council:{name:"Comunismo consejista",base:"council",thinkers:["Anton Pannekoek","Paul Mattick","Otto Rühle"],desc:"Confías en la autoorganización de trabajadores y comunidades. Te interesa que las decisiones económicas y políticas se tomen desde órganos participativos y controlados desde abajo.",traits:["Autogestión","Democracia directa","Consejos obreros"],ideas:"La autonomía, la participación directa y el control de los representantes son prioridades.",debate:"¿Cómo coordinar una sociedad compleja mediante consejos sin perder eficacia ni participación?",reading:"Anton Pannekoek — Los consejos obreros (1946)."},
+ anarcho:{name:"Comunismo libertario",base:"anarcho",thinkers:["Piotr Kropotkin","Errico Malatesta","Mijaíl Bakunin"],desc:"Priorizas la cooperación voluntaria, el apoyo mutuo y la descentralización. Desconfías de que una autoridad estatal concentrada pueda garantizar por sí sola una sociedad libre e igualitaria.",traits:["Apoyo mutuo","Federalismo","Descentralización"],ideas:"La cooperación social, las asociaciones libres y la organización comunitaria tienen un papel destacado.",debate:"¿Cómo coordinar servicios universales a gran escala sin una autoridad central fuerte?",reading:"Piotr Kropotkin — La conquista del pan (1892)."},
+ lux:{name:"Marxismo democrático",base:"lux",thinkers:["Rosa Luxemburgo","Karl Kautsky","Eugene V. Debs"],desc:"Combinas la crítica del capitalismo con una defensa fuerte de la iniciativa popular, las libertades políticas y la participación de masas.",traits:["Democracia socialista","Acción de masas","Libertades políticas"],ideas:"La transformación social debe contar con participación real, debate y capacidad de iniciativa desde abajo.",debate:"¿Cómo sostener instituciones democráticas durante una transformación económica profunda?",reading:"Rosa Luxemburgo — Reforma o revolución (1899)."},
+ agrarian:{name:"Socialismo agrario y comunitario",base:"agrarian",thinkers:["Aleksandr Chayánov","José Carlos Mariátegui","Alexander Herzen"],desc:"Concedes importancia a la tierra, las comunidades rurales, la soberanía alimentaria y las formas cooperativas de producción.",traits:["Cooperativismo","Tierra y comunidad","Soberanía alimentaria"],ideas:"La organización productiva debe considerar las necesidades locales, la sostenibilidad y la participación comunitaria.",debate:"¿Cómo equilibrar planificación general, autonomía campesina y modernización tecnológica?",reading:"José Carlos Mariátegui — Siete ensayos de interpretación de la realidad peruana (1928)."},
+ eco:{name:"Ecosocialismo",base:"eco",thinkers:["André Gorz","Michael Löwy","James O’Connor"],desc:"Tu prioridad es unir igualdad social y límites ecológicos. Consideras que la economía debe reorganizarse para satisfacer necesidades reales sin depender del crecimiento material ilimitado.",traits:["Justicia climática","Planificación ecológica","Suficiencia"],ideas:"La transición energética, la reducción de desigualdades y la planificación democrática deben ir de la mano.",debate:"¿Cómo decidir democráticamente qué producir y cómo repartir los costes de una transición ecológica?",reading:"André Gorz — Ecología y política (1975)."},
+ luxdem:{name:"Socialismo democrático",base:"lux",thinkers:["Rosa Luxemburgo","Salvador Allende","Eugene V. Debs"],desc:"Defiendes una transformación profunda de la economía junto con pluralismo, elecciones competitivas, libertades civiles y participación popular.",traits:["Pluralismo","Derechos sociales","Democracia económica"],ideas:"La democratización de la economía debe avanzar junto a instituciones representativas y derechos políticos.",debate:"¿Hasta dónde puede transformarse la propiedad económica mediante instituciones parlamentarias?",reading:"Salvador Allende — discursos sobre la vía chilena al socialismo."},
+ euro:{name:"Eurocomunismo",base:"lux",thinkers:["Santiago Carrillo","Enrico Berlinguer","Nicos Poulantzas"],desc:"Te interesa una vía socialista adaptada a sociedades plurales, con alianzas amplias, libertades políticas y transformación institucional.",traits:["Vía democrática","Pluralismo","Alianzas sociales"],ideas:"La construcción de mayorías sociales y la democratización del Estado son elementos importantes.",debate:"¿Puede una estrategia parlamentaria superar los límites estructurales del capitalismo?",reading:"Santiago Carrillo — Eurocomunismo y Estado (1977)."},
+ mao:{name:"Maoísmo",base:"lenin",thinkers:["Mao Zedong","江青","William Hinton"],desc:"Te interesa el papel de las estructuras rurales, las contradicciones sociales y la movilización política en procesos revolucionarios.",traits:["Análisis de contradicciones","Cuestión campesina","Movilización"],ideas:"La relación entre campo y ciudad, las desigualdades territoriales y la movilización de masas ocupan un lugar destacado.",debate:"¿Cómo evitar que la movilización permanente debilite las instituciones y las libertades?",reading:"Mao Zedong — Sobre la contradicción (1937)."},
+ marxlenin:{name:"Marxismo-leninismo crítico",base:"lenin",thinkers:["Raya Dunayevskaya","C. L. R. James","Moishe Postone"],desc:"Te acercas a la tradición marxista y leninista, pero te interesa revisar críticamente sus experiencias históricas y sus formas de organización.",traits:["Crítica interna","Teoría marxista","Democracia social"],ideas:"Combinas análisis de clase y organización con una revisión crítica de la burocracia y el poder.",debate:"¿Qué elementos de las experiencias socialistas deben conservarse y cuáles revisarse?",reading:"C. L. R. James — Los jacobinos negros (1938)."},
+ luxemburg:{name:"Luxemburguismo",base:"lux",thinkers:["Rosa Luxemburgo","Paul Frölich","Clara Zetkin"],desc:"Das especial importancia a la espontaneidad, la huelga de masas y la creatividad política de la clase trabajadora.",traits:["Huelga de masas","Iniciativa popular","Internacionalismo"],ideas:"La emancipación requiere que las mayorías participen activamente y no sean simples espectadoras.",debate:"¿Cómo se relacionan la espontaneidad popular y la planificación estratégica?",reading:"Rosa Luxemburgo — Huelga de masas, partido y sindicatos (1906)."},
+ autonom:{name:"Marxismo autonomista",base:"council",thinkers:["Antonio Negri","Mario Tronti","Silvia Federici"],desc:"Te interesan las formas de autonomía social, las luchas cotidianas, el trabajo reproductivo y las redes que surgen fuera de las instituciones tradicionales.",traits:["Autonomía","Nuevos movimientos","Trabajo y cuidados"],ideas:"Las luchas sociales no se limitan a la fábrica: también atraviesan los cuidados, la cultura y la vida cotidiana.",debate:"¿Cómo convertir movimientos autónomos y diversos en cambios duraderos?",reading:"Mario Tronti — Obreros y capital (1966)."},
+ situation:{name:"Comunismo de consejos",base:"council",thinkers:["Anton Pannekoek","Herman Gorter","Karl Korsch"],desc:"Te atraen las instituciones de democracia obrera directa y la crítica a la sustitución de la acción colectiva por aparatos políticos.",traits:["Consejos","Control desde abajo","Autonomía obrera"],ideas:"Los órganos de decisión deben permanecer bajo control de quienes participan en ellos.",debate:"¿Qué mecanismos permitirían coordinar consejos locales y decisiones generales?",reading:"Herman Gorter — Carta abierta al camarada Lenin (1920)."},
+ anarchosynd:{name:"Anarcosindicalismo",base:"anarcho",thinkers:["Rudolf Rocker","Buenaventura Durruti","Lucía Sánchez Saornil"],desc:"Ves el sindicato y la organización directa de los trabajadores como espacios fundamentales de solidaridad, formación y autogestión.",traits:["Sindicalismo revolucionario","Acción directa","Autogestión"],ideas:"La organización laboral puede servir para defender derechos y ensayar formas de gestión colectiva.",debate:"¿Cómo representar a trabajadores precarios, autónomos y sectores no sindicalizados?",reading:"Rudolf Rocker — Anarcosindicalismo (1938)."},
+ communal:{name:"Comunismo municipalista",base:"anarcho",thinkers:["Murray Bookchin","Janet Biehl","Peter Kropotkin"],desc:"Te interesa la democracia local, las asambleas vecinales, la ecología social y la federación de municipios con capacidad de decisión.",traits:["Municipalismo","Asambleas locales","Ecología social"],ideas:"La política puede construirse desde barrios y municipios, coordinados mediante federaciones.",debate:"¿Cómo evitar que las desigualdades entre municipios reproduzcan desigualdades sociales?",reading:"Murray Bookchin — La ecología de la libertad (1982)."},
+ ecosocial:{name:"Ecosocialismo democrático",base:"eco",thinkers:["Michael Löwy","André Gorz","Elmar Altvater"],desc:"Buscas una transición ecológica con planificación pública, participación democrática y garantías sociales para quienes se vean afectados.",traits:["Transición justa","Democracia","Justicia climática"],ideas:"La política climática debe reducir desigualdades y someter las decisiones energéticas a control democrático.",debate:"¿Qué instituciones pueden planificar una transición rápida y a la vez legítima?",reading:"Michael Löwy — Ecosocialismo (2011)."},
+ degrowth:{name:"Comunismo decrecentista",base:"eco",thinkers:["Kohei Saito","Serge Latouche","André Gorz"],desc:"Cuestionas que el bienestar dependa de producir y consumir cada vez más. Te interesan la suficiencia, los servicios públicos y la redistribución del tiempo y los recursos.",traits:["Decrecimiento","Suficiencia","Reparto del trabajo"],ideas:"Reducir actividades destructivas y garantizar bienes esenciales puede ser más importante que aumentar el PIB.",debate:"¿Cómo distinguir entre decrecer en consumo superfluo y ampliar lo que necesitan las comunidades empobrecidas?",reading:"Kohei Saito — El capital en el Antropoceno (2020)."},
+ marxismoec:{name:"Marxismo ecológico",base:"marx",thinkers:["John Bellamy Foster","Paul Burkett","Kohei Saito"],desc:"Lees la crítica de la economía política junto a la crisis metabólica entre sociedad y naturaleza. Te interesa la relación entre acumulación, recursos y ecosistemas.",traits:["Metabolismo social","Crítica ecológica","Economía política"],ideas:"La crisis ambiental está conectada con la forma en que se organiza la producción y se apropian los recursos.",debate:"¿Puede una planificación socialista evitar reproducir el productivismo?",reading:"John Bellamy Foster — La ecología de Marx (2000)."},
+ humanist:{name:"Marxismo humanista",base:"marx",thinkers:["Erich Fromm","Herbert Marcuse","Henri Lefebvre"],desc:"Te interesan la alienación, la libertad individual, la cultura y la vida cotidiana. Entiendes la emancipación como algo que debe mejorar tanto las condiciones materiales como la experiencia humana.",traits:["Alienación","Emancipación","Vida cotidiana"],ideas:"La crítica social debe atender también a la cultura, los deseos, la creatividad y las relaciones humanas.",debate:"¿Cómo transformar las condiciones materiales sin reducir la libertad a un concepto abstracto?",reading:"Erich Fromm — Marx y su concepto del hombre (1961)."},
+ agrarian2:{name:"Marxismo agrario",base:"agrarian",thinkers:["José Carlos Mariátegui","Aleksandr Chayánov","Theodor Shanin"],desc:"Pones en primer plano la cuestión agraria, la desigualdad territorial y las distintas formas de organización campesina.",traits:["Cuestión agraria","Reforma de la tierra","Cooperación rural"],ideas:"La transformación social debe responder a las realidades del campo y no tratarlo como un simple apéndice de la industria.",debate:"¿Cómo combinar derechos campesinos, seguridad alimentaria y producción sostenible?",reading:"Theodor Shanin — La clase incómoda (1972)."},
+ marxismoab:{name:"Marxismo antiimperialista",base:"trotsky",thinkers:["V. I. Lenin","Samir Amin","Frantz Fanon"],desc:"Te interesa cómo el colonialismo, la dependencia económica y las relaciones internacionales condicionan las posibilidades de desarrollo y emancipación.",traits:["Antiimperialismo","Dependencia","Solidaridad internacional"],ideas:"La economía mundial y las relaciones entre centro y periferia son claves para comprender la desigualdad.",debate:"¿Cómo construir cooperación internacional evitando nuevos nacionalismos excluyentes?",reading:"Samir Amin — El desarrollo desigual (1973)."}
+};
+const questions=[
+["¿Qué debería ser el principal motor de una transformación socialista?",[["La organización política y la estrategia común","lenin"],["La acción autónoma de trabajadores y comunidades","council"],["La movilización popular y la conciencia de clase","marx"],["La cooperación libre y descentralizada","anarcho"]]],
+["¿Qué aspecto del capitalismo te parece más importante analizar?",[["La explotación y las relaciones de producción","marx"],["La concentración del poder político y económico","lenin"],["La desigualdad global y el imperialismo","trotsky"],["El impacto ecológico y el consumo de recursos","eco"]]],
+["¿Cómo deberían tomarse las decisiones en el lugar de trabajo?",[["Mediante consejos elegidos y revocables","council"],["Con sindicatos y organizaciones fuertes coordinadas","lenin"],["Con asambleas y autogestión","anarcho"],["Con planificación pública y participación laboral","marx"]]],
+["¿Qué escala de organización te parece más adecuada?",[["Internacional, porque los problemas son globales","trotsky"],["Local y federal, conectando comunidades","anarcho"],["Estatal y coordinada democráticamente","marx"],["Combinación de escalas con protagonismo de consejos","council"]]],
+["¿Qué peligro te preocupa más en un proceso socialista?",[["La burocratización y la falta de control popular","lux"],["La desorganización y la falta de estrategia","lenin"],["La desigualdad ecológica y el productivismo","eco"],["La pérdida de autonomía de las comunidades","anarcho"]]],
+["¿Qué papel deberían tener las elecciones y el pluralismo?",[["Ser garantías esenciales de la vida política","lux"],["Combinarse con organización y movilización social","marx"],["Acompañarse de democracia directa en los centros de trabajo","council"],["No sustituir la autoorganización de la sociedad","anarcho"]]],
+["¿Cómo imaginas la economía del futuro?",[["Planificada democráticamente a gran escala","marx"],["Coordinada por consejos de productores y consumidores","council"],["Basada en cooperativas y apoyo mutuo","anarcho"],["Planificada según necesidades sociales y límites ecológicos","eco"]]],
+["¿Qué dimensión debería tener más peso en el análisis político?",[["La lucha de clases","marx"],["La estrategia y la organización","lenin"],["La dimensión internacional","trotsky"],["La relación entre sociedad y naturaleza","eco"]]],
+["¿Qué te parece más importante para evitar que una organización se aleje de sus bases?",[["Representantes revocables y asambleas","council"],["Debate interno y libertades políticas","lux"],["Formación y disciplina colectiva","lenin"],["Autonomía de grupos y federaciones","anarcho"]]],
+["¿Qué enfoque sobre el cambio social te convence más?",[["Un proceso internacional conectado","trotsky"],["Una transformación profunda de las estructuras económicas","marx"],["Experiencias locales que se federan","anarcho"],["Una transición ecológica justa y planificada","eco"]]],
+["¿Qué sector merece especial atención?",[["Industria y trabajo asalariado","marx"],["Agricultura y comunidades rurales","agrarian"],["Cuidados, servicios y reproducción social","lux"],["Energía, transporte y ecosistemas","eco"]]],
+["¿Qué forma de propiedad te parece más interesante?",[["Propiedad social con planificación democrática","marx"],["Cooperativas y comunas federadas","anarcho"],["Gestión directa por consejos de trabajadores","council"],["Cooperativas agrarias y formas comunitarias","agrarian"]]],
+["¿Qué significa para ti la internacionalidad?",[["Coordinar movimientos y procesos entre países","trotsky"],["Solidaridad entre trabajadores de todo el mundo","marx"],["Cooperación entre comunidades sin fronteras rígidas","anarcho"],["Compartir objetivos y estrategia política","lenin"]]],
+["¿Cómo debería organizarse la producción de alimentos?",[["Con cooperativas y protagonismo campesino","agrarian"],["Con planificación según necesidades y sostenibilidad","eco"],["Con gestión democrática de productores y consumidores","council"],["Con propiedad social y distribución universal","marx"]]],
+["¿Qué relación debería existir entre libertad e igualdad?",[["Son inseparables y requieren democracia política","lux"],["La libertad necesita eliminar la explotación económica","marx"],["La libertad exige reducir la autoridad centralizada","anarcho"],["La igualdad requiere instituciones colectivas eficaces","lenin"]]],
+["¿Qué crítica te parece más urgente dentro de la historia socialista?",[["La burocratización del poder","trotsky"],["La insuficiente democracia de algunas experiencias","lux"],["La falta de autonomía de los trabajadores","council"],["La falta de atención a los límites ecológicos","eco"]]],
+["¿Qué método de organización social prefieres?",[["Asambleas y federaciones voluntarias","anarcho"],["Partidos y organizaciones con estrategia común","lenin"],["Consejos elegidos y revocables","council"],["Cooperativas territoriales y redes rurales","agrarian"]]],
+["¿Qué debería orientar la planificación económica?",[["Necesidades sociales y prioridades colectivas","marx"],["Objetivos ecológicos y bienestar","eco"],["Decisiones de productores y comunidades","council"],["Equilibrio territorial y soberanía alimentaria","agrarian"]]],
+["¿Qué escala de cambio te parece más realista y deseable?",[["Una transformación internacional","trotsky"],["Cambios institucionales y económicos coordinados","lenin"],["Una red de comunidades autogestionadas","anarcho"],["Democratización gradual y profunda de la sociedad","lux"]]],
+["¿Qué frase se acerca más a tu visión?",[["La emancipación debe ser obra de los propios trabajadores","council"],["La solidaridad y la cooperación pueden organizar la sociedad","anarcho"],["Comprender el sistema es esencial para transformarlo","marx"],["No hay justicia social duradera sin justicia ecológica","eco"]]]
+];
+let index=0,answers=Array(questions.length).fill(null);
+const $=id=>document.getElementById(id);
+function render(){
+ const q=questions[index];$("counter").textContent=`Pregunta ${index+1} de 20`;$("percent").textContent=`${Math.round((index+1)/20*100)} %`;$("bar").style.width=`${(index+1)/20*100}%`;$("qnum").textContent=`PREGUNTA ${String(index+1).padStart(2,"0")}`;$("question").textContent=q[0];$("answers").innerHTML="";
+ q[1].forEach((a,i)=>{const b=document.createElement("button");b.className="answer"+(answers[index]===a[1]?" selected":"");b.innerHTML=`<span class="letter">${String.fromCharCode(65+i)}</span><span>${a[0]}</span>`;b.onclick=()=>{answers[index]=a[1];render()};$("answers").appendChild(b)});
+ $("back").disabled=index===0;$("next").disabled=!answers[index];$("next").textContent=index===19?"Ver mi resultado →":"Siguiente →";
+}
+function finish(){
+ const baseScores={marx:0,lenin:0,trotsky:0,council:0,anarcho:0,lux:0,agrarian:0,eco:0};
+ const choiceCounts=[0,0,0,0];
+ answers.forEach((key,i)=>{
+   baseScores[key]=(baseScores[key]||0)+1;
+   const chosen=questions[i][1].findIndex(a=>a[1]===key);
+   if(chosen>=0) choiceCounts[chosen]++;
+ });
+ const groups={
+  marx:["marx","marxismoec","humanist"],
+  lenin:["lenin","mao","marxlenin"],
+  trotsky:["trotsky","marxismoab"],
+  council:["council","situation","autonom"],
+  anarcho:["anarcho","anarchosynd","communal"],
+  lux:["lux","luxdem","euro","luxemburg"],
+  agrarian:["agrarian","agrarian2"],
+  eco:["eco","ecosocial","degrowth"]
+ };
+ const ranked=Object.entries(baseScores).sort((a,b)=>b[1]-a[1]);
+ const winningBase=ranked[0][0];
+ const candidates=groups[winningBase];
+ const secondary=(choiceCounts[0]+2*choiceCounts[1]+3*choiceCounts[2]+4*choiceCounts[3])%candidates.length;
+ const key=candidates[secondary],p=profiles[key];
+ const thinkerSet=[...new Set(Object.values(profiles).flatMap(x=>x.thinkers))];
+ $("quiz").classList.add("hidden");$("result").classList.remove("hidden");
+ $("type").textContent=p.name;
+ $("thinker").textContent="Pensadores afines: "+p.thinkers.join(" · ");
+ $("description").textContent=p.desc;
+ $("ideas").textContent=p.ideas;$("debate").textContent=p.debate;$("reading").textContent=p.reading;
+ $("traits").innerHTML=p.traits.map(t=>`<span class="trait">${t}</span>`).join("");
+ const extra=document.createElement("div");extra.className="mini";extra.style.marginTop="14px";extra.innerHTML="<h3>30 pensadores incluidos en el cuestionario</h3><p>"+thinkerSet.slice(0,30).join(" · ")+"</p>";
+ $("result-grid-extra")?.remove();
+ extra.id="result-grid-extra";$("result").querySelector(".result-grid").after(extra);
+}
+$("back").onclick=()=>{if(index>0){index--;render()}};$("next").onclick=()=>{if(!answers[index])return;if(index<19){index++;render()}else finish()};$("restart").onclick=()=>{index=0;answers=Array(20).fill(null);$("result").classList.add("hidden");$("quiz").classList.remove("hidden");render()};render();
+</script>
+</body></html>
